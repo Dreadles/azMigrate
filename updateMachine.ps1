@@ -91,7 +91,6 @@ if ($curatedVmList.Length -ne 0) {
 
             # Check to see if the OS is Windows or Linux and update the LicenseType accordingly
             if ($vm.OperatingSystem -match '(?i)windows') {
-                $licenseType
                 if ([String]::IsNullOrEmpty($vm.LicenseType)) {
                     $licenseType = "NoLicenseType"
                 }
@@ -117,7 +116,6 @@ if ($curatedVmList.Length -ne 0) {
                 }
             }
             Else {
-                $licenseType
                 if ([String]::IsNullOrEmpty($vm.LinuxLicenseType)) {
                     $licenseType = "NoLicenseType"
                 }

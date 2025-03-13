@@ -1,0 +1,3 @@
+Application,type,vmName,targetVMName,windowsLicenseType,linuxLicenseType,targetSubscriptionId,targetResourceGroup,targetNetworkName,targetSubnetName,primaryIpAddress,targetAvailabilityZone,targetSkuSize,osDiskName,diskSku,testNetworkName,testSubnetName
+TestApp1,VM,vm01,vm01,AHUB,,1321b9dbc3-c41f-4be3-996f-721312dd39,rg-testApp1,vnet-servers,snet-app,10.0.0.4,1,Standard_D2s_v5,scsi0:0,StandardSSD_LRS,vnet-test,Subnet1
+TestApp1,VM,vm02,vm02,AHUB,,1321b9dbc3-c41f-4be3-996f-721312dd39,rg-testApp1,vnet-servers,snet-app,10.0.0.5,2,Standard_D2s_v5,scsi0:0,StandardSSD_LRS,vnet-test,Subnet1

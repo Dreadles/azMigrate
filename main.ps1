@@ -1,8 +1,8 @@
 param (
     [string]$vmCSV,
-    [string]$migrateSubscriptionId,
-    [string]$migrateResourceGroupName,
-    [string]$migrateProjectName,
+    [string]$migrateSubscriptionId = "b7285315-4c4f-41ec-9906-139fd286a974",
+    [string]$migrateResourceGroupName = "rg-qmul-uks-man-j2c",
+    [string]$migrateProjectName = "mig-qmul-uks-man-j2c-uksMigration",
     [switch]$StartReplication,
     [switch]$StopReplication,
     [switch]$StartTestFailover,
@@ -11,6 +11,16 @@ param (
     [switch]$UpdateMachine,
     [switch]$ResumeReplication
 )
+
+$timeStamp = (Get-Date -Format 'yyyy-MM-dd_HHmmss')
+$logPath = Join-Path -Path "$(Split-Path -Path $vmCSV)\Logs" -ChildPath "$([System.IO.Path]::GetFileNameWithoutExtension((Split-Path -Path $vmCSV -Leaf)))-$($timeStamp).txt"
+
+# Check if the log file exists, if not, create it
+if (!(Test-Path -Path $logPath)) {
+    New-Item -Path $logPath -ItemType File | Out-Null
+}
+
+Start-Transcript -Path $logPath -Append
 
 # Import Shared Functions Module
 Import-Module ".\sharedFunctions.psm1" -Force
@@ -210,3 +220,5 @@ if ($ResumeReplication) {
     Write-Host "$(get-date) - Resuming Replication for validated Virtual Machines" -ForegroundColor Cyan -BackgroundColor Black
     .\resumeReplication.ps1 -curatedVmList $curatedVmList -migrateSubscriptionId $migrateSubscriptionId -migrateProjectName $migrateProjectName -migrateResourceGroupName $migrateResourceGroupName
 }
+
+Stop-Transcript
