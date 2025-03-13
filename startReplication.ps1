@@ -1,7 +1,7 @@
 param (
     [object]$curatedVmList,
     [string]$migrateSubscriptionId,
-    [int]$checkJobStatusTime = 10
+    [int]$checkJobStatusTime = 2
 )
 
 # Import Shared Functions Module
