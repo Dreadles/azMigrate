@@ -12,8 +12,14 @@ param (
     [switch]$ResumeReplication
 )
 
+## Logging Setup
 $timeStamp = (Get-Date -Format 'yyyy-MM-dd_HHmmss')
 $logPath = Join-Path -Path "$(Split-Path -Path $vmCSV)\Logs" -ChildPath "$([System.IO.Path]::GetFileNameWithoutExtension((Split-Path -Path $vmCSV -Leaf)))-$($timeStamp).txt"
+
+# Check if the log directory exists, if not, create it
+if (!(Test-Path -Path "$(Split-Path -Path $vmCSV)\Logs")) {
+    New-Item -Path "$(Split-Path -Path $vmCSV)\Logs" -ItemType Directory | Out-Null
+}
 
 # Check if the log file exists, if not, create it
 if (!(Test-Path -Path $logPath)) {
@@ -82,7 +88,6 @@ ForEach ($vmName in $joinedVMDetails.Keys) {
     # Check to see if operation requires gathering details about the VM to increase speed. Start Replication or Update Machine requires details about the VM. If not, just return object with machineId
     if ($StartReplication -or $UpdateMachine -or $StartTestFailover) {
 
-        Write-Host "$(get-date) - We need information about the VM - Switching to Application Subscription" -ForegroundColor Green
         switchSubscription($vmObject.csv.targetSubscriptionId)
         
         $disksToAdd = @()
