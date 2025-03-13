@@ -1,8 +1,8 @@
 param (
     [string]$vmCSV,
-    [string]$migrateSubscriptionId = "b7285315-4c4f-41ec-9906-139fd286a974",
-    [string]$migrateResourceGroupName = "rg-qmul-uks-man-j2c",
-    [string]$migrateProjectName = "mig-qmul-uks-man-j2c-uksMigration",
+    [string]$migrateSubscriptionId,
+    [string]$migrateResourceGroupName,
+    [string]$migrateProjectName,
     [switch]$StartReplication,
     [switch]$StopReplication,
     [switch]$StartTestFailover,
