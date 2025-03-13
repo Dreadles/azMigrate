@@ -204,7 +204,7 @@ if ($StartMigration) {
     $answer = Read-Host
     if ($answer -eq 'Y' -or $answer -eq 'y') {
         Write-Host "$(get-date) - Starting Migration Cutover for validated Virtual Machines" -ForegroundColor Cyan -BackgroundColor Black
-        #.\startMigration.ps1 -curatedVmList $curatedVmList -migrateSubscriptionId $migrateSubscriptionId -migrateProjectName $migrateProjectName -migrateResourceGroupName $migrateResourceGroupName
+        .\startMigration.ps1 -curatedVmList $curatedVmList -migrateSubscriptionId $migrateSubscriptionId -migrateProjectName $migrateProjectName -migrateResourceGroupName $migrateResourceGroupName
     }
     elseif ($answer -eq 'N' -or $answer -eq 'n') {
         Write-Host "$(get-date) - Cancelling Migration" -ForegroundColor Cyan -BackgroundColor Black
