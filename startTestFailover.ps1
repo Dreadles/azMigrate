@@ -3,7 +3,7 @@ param (
     [string]$migrateSubscriptionId,
     [string]$migrateResourceGroupName,
     [string]$migrateProjectName,
-    [int]$checkJobStatusTime = 10
+    [int]$checkJobStatusTime = 2
 )
 
 # Import Shared Functions Module
